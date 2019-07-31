@@ -1,38 +1,53 @@
-{%extends 'base.html'%}
 {% load bootstrap3 %}
-{% block content %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
 
-<body style="background: #e2e2e2;">
-    <div class="container">
-        <div class="row">
-            <!-- Empty div -->
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                {% if form.errors %}
-                <p> Password or Username is incorrect </p>
-                {% endif %}
-                <div class="panel panel-default" style="margin-top: 50%; margin-bottom: 50%;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
 
-                    <div class="panel-heading">
-                        <h3 class="text-center">Sign In</h3>
-                    </div>
-                    <div class="panel-body">
 
-                        <form action="/accounts/login/" method="post" ">
-            {% csrf_token %}
-            {% bootstrap_form form%}
-            <div class=" form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
-                    </div>
-                    <input type="hidden" name="next" value="{{next}}">
-                    </form>
-                    <h6><a href="{% url 'signup' %}">Sign</a> up instead</h6>
-                </div>
-            </div>
-        </div>
-        <!-- empty div -->
-        <div class="col-md-4"></div>
-    </div>
-    </div>
+    {%if title%}
+
+    <title>{{title}}</title>
+
+    {%endif%}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    {% endblock %}
+
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    {% block content %} {%endblock%}
+
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js">
+    </script>
+
 </body>
-{% endblock %}
+
+</html>
