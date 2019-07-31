@@ -4,6 +4,7 @@ from .models import Project, Profile, Rating
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import SubmitProjectForm, ProjectRatingForm, UpdateProfileForm
+from django.db.models import Avg
 # Create your views here.
 
 
@@ -58,3 +59,21 @@ def update_profile(request, id):
     else:
         form = UpdateProfileForm()
     return render(request, 'profile/update_profile.html', {'user': user, 'form': form})
+
+    # view function for a single_project
+    def single_project(request, c_id):
+        current_user = request.user
+        current_project = Project.objects.get(id=c_id)
+        ratings = Rating.objects.filter(project_id=c_id)
+        usability = Rating.objects.filter(
+        project_id=c_id).aggregate(Avg('usability_rating'))
+        content = Rating.objects.filter(
+        project_id=c_id).aggregate(Avg('content_rating'))
+        design = Rating.objects.filter(
+        project_id=c_id).aggregate(Avg('design_rating'))
+        return render(request, 'project.html', {"project": current_project, "user": current_user, 'ratings': ratings, "design": design, "content": content, "usability": usability})
+
+
+    
+
+    
