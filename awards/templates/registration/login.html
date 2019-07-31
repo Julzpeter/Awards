@@ -1,38 +1,60 @@
-{%extends 'base.html'%}
+{%extends 'registration/base.html'%}
 {% load bootstrap3 %}
 {% block content %}
 
-<body style="background: #e2e2e2;">
-    <div class="container">
-        <div class="row">
-            <!-- Empty div -->
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+<div class="container">
+    <div class="row">
+        <!-- Empty div -->
+        <div class="col-md-3">
+        </div>
+        <br>
+
+        <div class="col-md-6">
+            <div style="font-style: italic; font-weight: bold; font-size: 18px;" class="error ">
                 {% if form.errors %}
-                <p> Password or Username is incorrect </p>
+                <p> Sorry, your password was incorrect. Please double-check your password. </p>
                 {% endif %}
-                <div class="panel panel-default" style="margin-top: 50%; margin-bottom: 50%;">
-
-                    <div class="panel-heading">
-                        <h3 class="text-center">Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-
-                        <form action="/accounts/login/" method="post" ">
-            {% csrf_token %}
-            {% bootstrap_form form%}
-            <div class=" form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
-                    </div>
-                    <input type="hidden" name="next" value="{{next}}">
-                    </form>
-                    <h6><a href="{% url 'signup' %}">Sign</a> up instead</h6>
-                </div>
             </div>
+            <br>
+            <br>
+            <div class="panel panel-default shadow p-3 mb-5 bg-white rounded">
+
+                <br>
+                <div class="panel-heading ">
+                    <p style="font-style: italic; font-weight: bold; font-size: 40px;" class="text-center">Sign in to
+                        continue </p>
+                    <br>
+                    <hr>
+                    <p class="text-center">Not a memeber yet? <a style="text-decoration: none; color:#D81B60;"
+                            href="/accounts/register">Register Now</a>
+                    </p>
+                </div>
+                <hr>
+                <br>
+                <div class="panel-body">
+
+                    <form action="/accounts/login/" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form%}
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block change"
+                                style="background-color: #D81B60;" value="LOGIN NOW">
+                        </div>
+
+                        <input type="hidden" name="next" value="{{next}}">
+
+                    </form>
+                </div>
+
+
+            </div>
+
         </div>
         <!-- empty div -->
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
+
     </div>
-    </div>
-</body>
+</div>
 {% endblock %}
