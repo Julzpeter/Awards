@@ -89,6 +89,26 @@ def update_profile(request, id):
 
         return render(request, 'rating/rating.html', {'form': form, "project": current_project, "user": current_user})
 
+    def new_project(request, id):
+        current_user = request.user
+        try:
+            profile = Profile.objects.get(user_id=id)
+        except ObjectDoesNotExist:
+            return redirect(update_profile, current_user.id)
+
+        if request.method == 'POST':
+            form = SubmitProjectForm(request.POST, request.FILES)
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.owner = current_user
+                project.profile = Profile.objects.get(user_id=id)
+                project.save()
+                return redirect(home)
+        else:
+            form = SubmitProjectForm()
+
+        return render(request, 'new_project.html', {'form': form, "user": current_user})
+
 
 
     
