@@ -35,7 +35,7 @@ class Project(models.Model):
         upload_to='photos/', default='photos/default.jpg')
     optional_screenshot = models.ImageField(
         upload_to='photos/', default='photos/default.jpg')
-    link = models.CharField(max_length=50)
+    link = models.CharField(max_length=200)
     technologies = models.CharField(max_length=100)
     categories = models.CharField(max_length=100)
     post_date = models.DateTimeField(auto_now_add=True)
