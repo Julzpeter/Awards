@@ -73,7 +73,22 @@ def update_profile(request, id):
         project_id=c_id).aggregate(Avg('design_rating'))
         return render(request, 'project.html', {"project": current_project, "user": current_user, 'ratings': ratings, "design": design, "content": content, "usability": usability})
 
+    def review_rating(request, id):
+        current_user = request.user
+        current_project = Project.objects.get(id=id)
+        if request.method == 'POST':
+            form = ProjectRatingForm(request.POST)
+            if form.is_valid():
+                rating = form.save(commit=False)
+                rating.project = current_project
+                rating.user = current_user
+                rating.save()
+                return redirect('project', id)
+        else:
+            form = ProjectRatingForm()
 
-    
+        return render(request, 'rating/rating.html', {'form': form, "project": current_project, "user": current_user})
+
+
 
     
