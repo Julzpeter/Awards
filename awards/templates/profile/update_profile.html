@@ -19,15 +19,14 @@
                 <div class="col-md-3 col-xs-2"></div>
                 <div class="col-md-6 col-xs-8">
 
-                    <h3 style="font-family: 'Merienda', cursive;" class="name">Please create a profile so that other
-                        users can know who posted the project</h3><br>
+                    <h3 style="font-family: 'Merienda', cursive;" class="name">Please create a profile</h3><br>
                     <div class="form">
                         <form style="background-color: white" action="{%url 'update_profile' user.id%}" method="post"
                             enctype="multipart/form-data">
                             {%csrf_token%}
 
                             {% bootstrap_form form%}
-                            <input type="submit" class="btn " value="Submit">
+                            <input type="submit" class="btn btn-info" value=" Submit">
                         </form>
                     </div>
                     {% block scripts %}

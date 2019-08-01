@@ -22,7 +22,7 @@
                 <p><b>Contact</b> {{profile.contact}}</p>
                 <hr>
                 {% if request.user == user %}
-                <p class="btn btn-"> <a style="text-decoration:none;color:cyan"
+                <p class="btn btn-info"> <a style=" text-decoration:none;color:white";
                         href="{% url 'update_profile' user.id %}">Edit profile</a></p>
                 {% else %}
 
