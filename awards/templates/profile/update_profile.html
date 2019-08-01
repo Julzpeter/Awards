@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+{% load mathfilters %}
+{% block content %}
+{{ block.super}}
+
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Merienda|Monoton|Ultra&display=swap"
+        rel="stylesheet">
+    <title>Update</title>
+    {{form.media}}
+    {% load bootstrap3 %} {% load staticfiles %}
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
+
+    </head>
+
+    <body style="background-color: white">
+
+        <div class="container" style="margin-top:100px;">
+            <div class="row">
+                <div class="col-md-3 col-xs-2"></div>
+                <div class="col-md-6 col-xs-8">
+
+                    <h3 style="font-family: 'Merienda', cursive;" class="name">Please create a profile so that other
+                        users can know who posted the project</h3><br>
+                    <div class="form">
+                        <form style="background-color: white" action="{%url 'update_profile' user.id%}" method="post"
+                            enctype="multipart/form-data">
+                            {%csrf_token%}
+
+                            {% bootstrap_form form%}
+                            <input type="submit" class="btn " value="Submit">
+                        </form>
+                    </div>
+                    {% block scripts %}
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    {% bootstrap_javascript %} {% endblock %}
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-2"></div>
+        </div>
+    </body>
+    {% endblock %}
