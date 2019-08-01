@@ -18,12 +18,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if user.is_authenticated %}
-                        <a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a>
-                        <a class="dropdown-item" href="/logout">Logout</a>
-                        <a class="dropdown-item" href=" accounts/login">Login </a>
+                    <a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    <a class="dropdown-item" href=" accounts/login">Login </a>
                     {% else %}
-                        <a class="dropdown-item" href="">Profile</a>
-                        <a class="dropdown-item" href="">Logout</a>
+                    <a class="dropdown-item" href="">Profile</a>
+                    <a class="dropdown-item" href="">Logout</a>
                     {% endif %}
 
                 </div>
@@ -31,7 +31,8 @@
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0" style="float: right" ;>
+        <form class="form-inline my-2 my-lg-0" style="float:right"; action="{% url 'search_results' %}" method="GET"
+            value="{{request.GET.q}}">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-info type=" submit">Search</button>
         </form>
