@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+{% block content %}
+{{ block.super}}
+
+
+
+<body>
+    <div style="margin-top:100px;background-color: white" class="container">
+        <div clas="row">
+
+            <div class="col-md-4 col-sm-4 col-xs-8">
+                <img style="border-radius:100px;height:200px;width:200px;margin-top:20px"
+                    src="{{profile.profile_pic.url}}" class="img-responsive" alt="Image">
+
+
+                <hr>
+                <h3><b>{{user.username}}</b></h3>
+                <hr>
+
+                <p class="bio"><b>Bio</b> {{profile.bio }}</p>
+                <hr>
+                <p><b>Contact</b> {{profile.contact}}</p>
+                <hr>
+                {% if request.user == user %}
+                <p class="btn btn-"> <a style="text-decoration:none;color:white"
+                        href="{% url 'update_profile' user.id %}">Edit profile</a></p>
+                {% else %}
+
+                {% endif %}
+            </div>
+
+            <div class="col-md-8 col-sm-8 col-xs-12">
+
+                <h4 class="text-center"><strong>Projects</strong></h4>
+                <hr>
+                {% for project in projects %}
+                <div class="col-xs-8 col-sm-6 col-md-4 col-lg-4 ">
+                    <div class="user-projs">
+                        <img style="margin:13px;height:200px;width:200px;" src="{{project.screenshot.url}}"
+                            class="img-responsive" alt="Image">
+                        <p>{{project.sitename}}</p>
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div style="background-color: white" class="container">
+
+
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</body>
+{% endblock %}
