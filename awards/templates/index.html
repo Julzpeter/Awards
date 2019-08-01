@@ -2,5 +2,54 @@
 {% load bootstrap3 %}
 {% block content %}
 {{ block.super}}
-<h1>Welcome to awards</h1>
-{% endblock %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-7">
+            <!-- Card -->
+            <div class="card">
+
+
+                <!-- Card image -->
+                <!-- <div class="view overlay">
+                        <img class="card-img-top"
+                            src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
+                            alt="Card image cap">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    < Card content -->
+                <div class="card-body">
+
+                    {% for project in projects %}
+                    <div class="col-xs-12 col-sm-10 col-md-4 col-lg-4">
+                        <div class="pro">
+                            <a href="{% url 'project' project.id %}">
+
+
+                                <img style="margin:px;height:100%;width:100%;" src="{{project.screenshot.url}}"
+                                    class="img img-responsive" alt="Image">
+                            </a>
+                            <br>
+
+                            <h4 class="text" style="margin-left:3px"><strong>{{project.sitename}}</strong></h4>
+                            <p class="text" style="margin-left:3px">{{project.description}}</p>
+                            <p><img style='margin-left:3px;border-radius:100px;height:30px;width:30px'
+                                    src='{{project.profile.profile_pic.url}}'> <i><b>{{project.owner}}</b></i></p>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                <!-- Card -->
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    <!--  -->

@@ -1,0 +1,114 @@
+{% extends 'base.html'%}
+{% load mathfilters %}
+{% block content %}
+{{ block.super}}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    {{form.media}}
+    {% load bootstrap3 %} {% load staticfiles %}
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Luckiest+Guy|Merienda|Merriweather|Monoton|Ultra&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Aguafina+Script|Dancing+Script|Lobster|Niconne|Pacifico|Righteous|Satisfy&display=swap"
+        rel="stylesheet">
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="container 1" style="margin-top:100px">
+        <div class="col-md-1 col-sm-1"></div>
+        <div class="col-md-10 col-sm-10 col-xs-12">
+            <img class="img-responsive image" src="{{project.screenshot.url}}"
+                style="width:100%;margin-top:20px;height:100%;"><br>
+            <p class="bg-text"></p>
+
+            <a href="{% url 'review' project.id %}">
+                <button class="btn btn-primar">Rate</button>
+            </a>
+            <div class="proj-details">
+                <h3 style="font-family: 'Rajdhani', sans-serif;" class="text-center">{{project.sitename}}</h3>
+                <hr>
+                <p><b class="detail">About <br></b> {{project.description}}</p>
+                <hr>
+                <p><b class="detail">View site<br></b> <a href='{{project.link}}'>Live site</a></p>
+                <hr>
+                <p>by<b> {{project.owner}}</b></p>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-1"></div>
+    </div>
+    <div class="container" style="margin-top:50px;margin-bottom:50px;">
+        <div class="row">
+            <div class="col-md-2 col-sm-1 "></div>
+            <div class="col-md-8 col-sm-10 col-xs-12">
+
+
+            </div><br>
+            <h2 class="text-center com" style="font-family: 'Merienda', cursive;">Ratings</h2><br>
+            {% if ratings %}
+
+            {% for rating in ratings %}
+            <div style="padding:20px;margin:5px;border:1px solid whitesmoke;background-color: white"
+                class="container rating">
+                <div class="col-md-4 col-sm-4">
+                    <p><img class="img-responsive " src="{{rating.user.profile.profile_pic.url}}"
+                            style="width:50px;height:50px;border-radius: 100px;"><b>{{rating.user.username}}</b></p>
+
+                    <p style="font-family: 'Open Sans Condensed', sans-serif;">{{rating.review}}</p>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <h6 class="us"><i>Usability</i></h6>
+                    <p style="color:#FF4242">{{rating.usability_rating}}</p>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <h6 class="de"><i>Design</i></h6>
+                    <p style="color:#FF9F1C">{{rating.design_rating}}</p>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <h6 class="co"><i>content</i></h6>
+                    <p style="color:#2EC4B6">{{rating.content_rating}}</p>
+                </div>
+                <div class="col-md-2 col-sm-2 ">
+                    <h6 class="ave"><i>Average</i></h6>
+                    <p class="p-ave">
+                        {{ rating.content_rating | add:rating.design_rating |add:rating.usability_rating|div:3|truncatechars:6}}
+                    </p>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% else %}
+        <h5 class="text-center">No reviews yet.</h5>
+        <h5 class="text-center">Be the first to review</h5>
+        {% endif %}
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% bootstrap_javascript %} {% endblock %}
+
+        <div class="col-md-2 col-sm-1"></div>
+    </div>
+
+    </div>
+    <br><br><br>
+</body>
+{% endblock %}
+
+</html>
