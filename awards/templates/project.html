@@ -8,10 +8,6 @@
 
 <head>
 
-    <style>
-
-
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,10 +30,10 @@
             <p class="bg-text"></p>
 
             <a href="{% url 'review' project.id %}">
-                <button class="btn btn-primar">Rate</button>
+                <button class="btn btn-primary">Rate</button>
             </a>
             <div class="proj-details">
-                <h3 style="font-family: 'Rajdhani', sans-serif;" class="text-center">{{project.sitename}}</h3>
+                <h3 style="font-family:  'Sail', cursive;" class="text-center">{{project.sitename}}</h3>
                 <hr>
                 <p><b class="detail">About <br></b> {{project.description}}</p>
                 <hr>
@@ -55,7 +51,7 @@
 
 
             </div><br>
-            <h2 class="text-center com" style="font-family: 'Merienda', cursive;">Ratings</h2><br>
+            <h2 class="text-center com" style="font-family: 'Sail', cursive;">Ratings</h2><br>
             {% if ratings %}
 
             {% for rating in ratings %}
@@ -65,7 +61,7 @@
                     <p><img class="img-responsive " src="{{rating.user.profile.profile_pic.url}}"
                             style="width:50px;height:50px;border-radius: 100px;"><b>{{rating.user.username}}</b></p>
 
-                    <p style="font-family: 'Open Sans Condensed', sans-serif;">{{rating.review}}</p>
+                    <p style="font-family: 'Sail', cursive;">{{rating.review}}</p>
                 </div>
                 <div class="col-md-2 col-sm-2">
                     <h6 class="us"><i>Usability</i></h6>

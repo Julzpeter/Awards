@@ -1,25 +1,29 @@
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+import datetime as dt
+from django.db.models import Sum
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Project, Profile, Rating
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import SubmitProjectForm, ProjectRatingForm, UpdateProfileForm
-from django.db.models import Avg
-from .permissions import IsAdminOrReadOnly
-from .serializer import ProfileSerializer, ProjectSerializer
-from rest_framework import status
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from .serializer import ProfileSerializer, ProjectSerializer
+from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+from django.shortcuts import render
+from django.db.models import Q
+from django.db.models import Avg
 # Create your views here.
 
 
-@login_required(login_url='/accounts/login')
 def home(request):
     users = User.objects.all()
     current = request.user
     projects = Project.objects.all()
-
     return render(request, 'index.html', {'users': users, 'user': current, 'projects': projects})
 
     # view function for users profile page
@@ -113,12 +117,13 @@ def new_project(request, id):
             project.owner = current_user
             project.profile = Profile.objects.get(user_id=id)
             project.save()
-            return redirect(home)
+        return redirect(home)
 
-        else:
-            form = SubmitProjectForm()
+    else:
+        form = SubmitProjectForm()
 
         return render(request, 'new_project.html', {'form': form, "user": current_user})
+
 
 def search_results(request):
     if request.method == 'GET':
@@ -129,12 +134,12 @@ def search_results(request):
 
         if query is not None:
             lookups = Q(sitename__icontains=query) | Q(
-                    content__icontains=query)
+                content__icontains=query)
 
             searched_project = Project.objects.filter(lookups).distinct()
 
             context = {'results': results,
-                           'submitbutton': submitbutton}
+                       'submitbutton': submitbutton}
 
             return render(request, 'searched.html', {"project": searched_project})
 
