@@ -1,6 +1,39 @@
 {%extends 'base.html'%}
-{% load bootstrap3 %}
+{% extends bootstrap3 %}
 {% block content %}
 {{ block.super}}
-<h1>New project</h1>
+
+
+<title>Rating</title>
+{{form.media}}
+{% load bootstrap3 %} {% load staticfiles %}
+{% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link
+    href="https://fonts.googleapis.com/css?family=Aguafina+Script|Dancing+Script|Lobster|Niconne|Pacifico|Righteous|Satisfy&display=swap"
+    rel="stylesheet">
+{% endblock %}
+
+
+<div class="container" style="margin-top:100px;margin-bottom:50px;">
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-xs-2"></div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <h2 class="text-center new">New Project</h2>
+            <br>
+            <div class="form">
+                <i>
+                    <form style="border:white" action="{% url 'new_project' user.id %}" method="post"
+                        enctype="multipart/form-data">
+                        {%csrf_token%}
+
+                        <i><span class="rate-form"> {% bootstrap_form form%}
+                                <input type="submit" class="btn" value="Submit"></span></i>
+                    </form>
+                </i>
+            </div><br>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2"></div>
+    </div>
+</div>
 {% endblock %}
