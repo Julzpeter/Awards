@@ -34,18 +34,20 @@
         <div class="row">
             {% for project in projects %}
             <div class="col-md-4 d-flex align-items-stretch">
-                
+
                 <!-- Card -->
                 <div class="card mb-3">
 
                     <!-- Card image -->
                     {% if project.screenshot %}
-                    <div class="view overlay">
+                    <div class="view overlay zoom">
                         <img style="margin:px;height:100%;width:100%;" src="{{project.screenshot.url}}"
                             class="img img-responsive" alt="Image">
                         <a href="{% url 'project' project.id %}">
                             <div class="mask rgba-white-slight"></div>
                         </a>
+                     
+
                     </div>
                     {% endif %}
 
