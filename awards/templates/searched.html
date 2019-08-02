@@ -1,6 +1,25 @@
 {%extends 'base.html'%}
-{% load bootstrap3 %}
 {% block content %}
 {{ block.super}}
-<h1>YOUR SEARCH RESULTS</h1>
+
+<div style="margin-top:50px" class="container">
+    <div class="col-md-2"></div>
+    <div style="background-color: white;padding:20px" class="col-md-8">
+        {% if projects %}
+        <h3>Found projects</h3>
+        {% for project in projects %}
+        <a style="text-decoration:none;color:black" href="{% url 'profile' user.id  %}">
+            <p><img class="post-search" src="{{project.screenshot.url}}" class="img-responsive" alt="Image">
+                <strong>{{project.sitename}}</strong></p>
+        </a>
+        <hr>
+        {% endfor %}
+
+        {% else %}
+        <p> Did not find projects matching the searched name </p>
+        {% endif %}
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
 {% endblock %}
