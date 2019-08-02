@@ -68,12 +68,12 @@ body {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.btn {
+/* .btn {
     width: 100%;
     border-radius: 0px;
     background-color: #23C9FF;
     color: white
-}
+} */
 
 .detail {
     font-size: 15px;
@@ -112,3 +112,4 @@ body {
     font-size: 18px;
     font-family: 'Merriweather', serif;
 }
+
