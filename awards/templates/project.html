@@ -15,34 +15,37 @@
     {{form.media}}
     {% load bootstrap3 %} {% load staticfiles %}
     {% block styles %} {% bootstrap_css %}
-    
-    
+
+
     {% endblock %}
 
 </head>
 
 <body>
-    <div class="container 1" style="margin-top:100px">
-        <div class="col-md-1 col-sm-1"></div>
-        <div class="col-md-10 col-sm-10 col-xs-12">
-            <img class="img-responsive image" src="{{project.screenshot.url}}"
-                style="width:100%;margin-top:20px;height:100%;"><br>
-            <p class="bg-text"></p>
+    <div class="view overlay zoom">
+        <div class="container 1" style="margin-top:100px">
+            <div class="col-md-1 col-sm-1"></div>
+            <div class="col-md-10 col-sm-10 col-xs-12">
 
-            <a href="{% url 'review' project.id %}">
-                <button class="btn btn-primary">Rate</button>
-            </a>
-            <div class="proj-details">
-                <h3 style="font-family:  'Sail', cursive;" class="text-center">{{project.sitename}}</h3>
-                <hr>
-                <p><b class="detail">About <br></b> {{project.description}}</p>
-                <hr>
-                <p><b class="detail">View site<br></b> <a href='{{project.link}}'>Live site</a></p>
-                <hr>
-                <p>by<b> {{project.owner}}</b></p>
+                <img class="img-responsive image" src="{{project.screenshot.url}}"
+                    style="width:100%;margin-top:20px;height:100%;"><br>
+                <p class="bg-text"></p>
+
+                <a href="{% url 'review' project.id %}">
+                    <button class="btn btn-primary">Rate</button>
+                </a>
+                <div class="proj-details">
+                    <h3 style="font-family:  'Sail', cursive;" class="text-center">{{project.sitename}}</h3>
+                    <hr>
+                    <p><b class="detail">About <br></b> {{project.description}}</p>
+                    <hr>
+                    <p><b class="detail">View site<br></b> <a href='{{project.link}}'>Live site</a></p>
+                    <hr>
+                    <p>by<b> {{project.owner}}</b></p>
+                </div>
             </div>
+            <div class="col-md-1 col-sm-1"></div>
         </div>
-        <div class="col-md-1 col-sm-1"></div>
     </div>
     <div class="container" style="margin-top:50px;margin-bottom:50px;">
         <div class="row">
